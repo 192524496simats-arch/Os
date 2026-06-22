@@ -1,0 +1,38 @@
+#include <stdio.h>
+
+int main() {
+    int n, bt[20], rt[20], pr[20];
+    int i, time = 0, completed = 0;
+    int smallest;
+
+    printf("Enter number of processes: ");
+    scanf("%d", &n);
+
+    for(i = 0; i < n; i++) {
+        printf("Enter Burst Time and Priority for P%d: ", i+1);
+        scanf("%d%d", &bt[i], &pr[i]);
+        rt[i] = bt[i];
+    }
+
+    while(completed != n) {
+        smallest = -1;
+
+        for(i = 0; i < n; i++) {
+            if(rt[i] > 0) {
+                if(smallest == -1 || pr[i] < pr[smallest])
+                    smallest = i;
+            }
+        }
+
+        rt[smallest]--;
+        time++;
+
+        if(rt[smallest] == 0) {
+            completed++;
+            printf("P%d completed at time %d\n",
+                   smallest + 1, time);
+        }
+    }
+
+    return 0;
+}
