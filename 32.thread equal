@@ -1,0 +1,17 @@
+#include <stdio.h>
+#include <pthread.h>
+
+int main()
+{
+    pthread_t t1, t2;
+
+    t1 = pthread_self();
+    t2 = pthread_self();
+
+    if(pthread_equal(t1, t2))
+        printf("Threads are Equal\n");
+    else
+        printf("Threads are Not Equal\n");
+
+    return 0;
+}
